@@ -24,3 +24,7 @@ With `matplotlib.backends.backend_tkagg` other extra features can be added, such
 - originality and creativity of the end result and/or implementation.
 - use of colors.
 - industry standard in coding.
+
+### Notes and process:
+The notes I used is in another markdown file in the root of this repository, called `notes_transformations.md`. 
+Those are linear algebra principles and my writing down of intuitions to help conceptualise the steps in the assignment work.
