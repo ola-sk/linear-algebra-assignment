@@ -50,14 +50,18 @@ class Vector3D(np.ndarray, Generic[T_Float]):
     def create(cls,
                arr: Tuple[float | int, float | int, float | int] |
                     list[float | int] |
-                    np.ndarray
+                    np.ndarray,
+               origin: Tuple[float | int, float | int, float | int] |
+                       list[float | int] |
+                       np.ndarray = (0, 0, 0),
                ) -> 'Vector3D[T_Float]':
         """
         Create a Vector3D from an array-like object.
 
         Parameters:
-            arr: Input array-like object (tuple, list, or ndarray) with 3 elements.
+            :param arr: array-like object (tuple, list, or ndarray) with 3 elements.
                  Elements can be int or float types, which will be converted to float.
+            :param origin: the vector's values would be calculated relative to this origin.
 
         Returns:
             New Vector3D array (numpy arrays of shape (3,) and dtype float).
@@ -65,18 +69,26 @@ class Vector3D(np.ndarray, Generic[T_Float]):
         Raises:
             ValueError: If input shapes are not (3,).
             TypeError: If input elements cannot be converted to floating point types.
+
         """
         try:
+            print(arr, origin)
             # Allow numeric types (int, float) that can be safely converted to float, error out for non-numeric types.
             arr = np.asarray(arr, dtype=float)
+            origin = np.asarray(origin, dtype=float)
+            print(arr, arr.shape, origin, origin.shape)
 
             # Check shape
             if arr.shape != (3,):
                 raise ValueError(f"Array argument (arr) to Vector3D.create() must have shape (3,), got {arr.shape}")
-
-            # Return the Vector3D instance after all above checks passed
-            # The `.view(cls)` method in NumPy is used to create a new array view
-            # that shares the same data but is interpreted as a different array type - in this case, a Vector3D.
+            if origin.shape != (3,):
+                raise ValueError(f"Array argument (origin) to Vector3D.create() must have shape (3,), got {origin.shape}")
+            arr[0] += origin[0]
+            arr[1] += origin[1]
+            arr[2] += origin[2]
+            # cast to Vector3D instance after all above checks passed and absolute coordinates have been calculated.
+            # casting to a view is intentional and part of NumPy's efficient memory model - views don't duplicate data,
+            # therefore the declaration below just creates a reference of different type pointing to the same memory block.
             return cast('Vector3D[T_Float]', arr.view(cls))
         except (ValueError, TypeError) as e:
             if "could not convert" in str(e):
