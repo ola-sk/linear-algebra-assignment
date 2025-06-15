@@ -1,9 +1,10 @@
+import numpy as np
+
 from src.vectors import Vector3D, edge_3d
 
-def create_cube(size: float = 1, origin: Vector3D = Vector3D.create((0, 0, 0))) -> list[
-    tuple[Vector3D[float], Vector3D[float]]]:
+def create_cube(size: float = 1, origin: Vector3D = Vector3D.create((0, 0, 0))) -> np.ndarray:
     half_size = size / 2
-    cube = [
+    cube = np.array([
         # top
 
         # x

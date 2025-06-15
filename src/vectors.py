@@ -104,6 +104,16 @@ class Vector3D(np.ndarray, Generic[T_Float]):
         """Return a string representation of the vector, formatted like a regular NumPy array."""
         return np.ndarray.__str__(self)
 
-def edge_3d(tail: Vector3D[float], head: Vector3D[float]
-            ) -> Tuple[Vector3D[float], Vector3D[float]]:
-    return head, tail
+def edge_3d(tail: Vector3D[float], head: Vector3D[float]) -> np.ndarray:
+    """
+    Create an edge from tail to head vectors.
+
+    Parameters:
+        tail: The starting point of the edge
+        head: The end point of the edge
+
+    Returns:
+        A 2x3 NumPy array containing 3-element vectors with tail and head coordinates.
+    """
+    return np.array([head, tail])
+
