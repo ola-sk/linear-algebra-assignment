@@ -28,3 +28,30 @@ With `matplotlib.backends.backend_tkagg` other extra features can be added, such
 ### Notes and process:
 The notes I used is in another markdown file in the root of this repository, called `notes_transformations.md`. 
 Those are linear algebra principles and my writing down of intuitions to help conceptualise the steps in the assignment work.
+
+
+# Getting started
+After cloning this repo:
+
+1. in the project's root directory create a new virtual environment:
+```bash
+python -m venv .venv
+```
+
+2. Activate the new environment:
+```bash
+# On Windows
+.venv\Scripts\activate
+```
+
+3. Install the required packages:
+
+```bash
+# install packages from requirements file
+pip install -r requirements.txt
+```
+
+4. Open PyCharm and configure it to use the new virtual environment:
+Go to `File > Settings > Project > Python Interpreter`
+Add the new interpreter by pointing to `.venv\Scripts\python.exe`.
+
