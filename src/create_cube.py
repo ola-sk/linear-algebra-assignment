@@ -7,7 +7,7 @@ def create_cube(size: float = 1, origin: Vector3D = Vector3D.create((0, 0, 0))) 
     cube = np.array([
         # top
 
-        # x
+        # alongside x axis
         edge_3d(
             Vector3D.create((half_size, half_size, half_size), origin),
             Vector3D.create((-half_size, half_size, half_size), origin)
@@ -16,7 +16,7 @@ def create_cube(size: float = 1, origin: Vector3D = Vector3D.create((0, 0, 0))) 
             Vector3D.create((half_size, half_size, -half_size), origin),
             Vector3D.create((-half_size, half_size, -half_size), origin)
         ),
-        # z
+        # alongside z axis
         edge_3d(
             Vector3D.create((half_size, half_size, half_size), origin),
             Vector3D.create((half_size, half_size, -half_size), origin),
@@ -25,28 +25,47 @@ def create_cube(size: float = 1, origin: Vector3D = Vector3D.create((0, 0, 0))) 
             Vector3D.create((-half_size, half_size, half_size), origin),
             Vector3D.create((-half_size, half_size, -half_size), origin)
         ),
+
         # bottom
 
-        # x
+        # alongside x axis
         edge_3d(
             Vector3D.create((half_size, -half_size, half_size), origin),
             Vector3D.create((-half_size, -half_size, half_size), origin)
-        ),
+        ), # front
         edge_3d(
             Vector3D.create((half_size, -half_size, -half_size), origin),
             Vector3D.create((-half_size, -half_size, -half_size), origin)
-        ),
-        # y
+        ), # back
+        # alongside z axis
         edge_3d(
             Vector3D.create((half_size, -half_size, half_size), origin),
             Vector3D.create((half_size, -half_size, -half_size), origin),
-        ),
+        ), # right
         edge_3d(
             Vector3D.create((-half_size, -half_size, half_size), origin),
             Vector3D.create((-half_size, -half_size, -half_size), origin),
-        )
-    ]
-    print("Qube created with following edges: \n", cube)
+        ), # left
+
+        # connecting top and bottom
+        edge_3d(
+            Vector3D.create((half_size, half_size, half_size), origin),
+            Vector3D.create((half_size, -half_size, half_size), origin)
+        ), # front-right
+        edge_3d(
+            Vector3D.create((-half_size, half_size, half_size), origin),
+            Vector3D.create((-half_size, -half_size, half_size), origin)
+        ), # front-left
+        edge_3d(
+            Vector3D.create((half_size, half_size, -half_size), origin),
+            Vector3D.create((half_size, -half_size, -half_size), origin)
+        ), # back-right
+        edge_3d(
+            Vector3D.create((-half_size, half_size, -half_size), origin),
+            Vector3D.create((-half_size, -half_size, -half_size), origin)
+        ), # back-left
+    ])
+    print("Cube created with following edges: \n", cube)
     return cube
 
 create_cube()
