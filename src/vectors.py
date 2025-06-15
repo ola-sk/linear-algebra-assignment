@@ -6,7 +6,7 @@ import numpy as np
 T_Float = TypeVar('T_Float', float, np.floating)
 class Vector3D(np.ndarray, Generic[T_Float]):
     """
-    The Vector3D class extends np.ndarray with just a minimal initialization overhead,
+    The Vector3D class extends np.ndarray with a minimal initialization overhead,
     so it inherits the performance characteristics of NumPy arrays.
 
     Initialization of Vector3D should happen via its `create` method, where a verification logic is implemented.
@@ -96,6 +96,13 @@ class Vector3D(np.ndarray, Generic[T_Float]):
                     f"Vector3D requires numeric elements that can be converted to float, got {type(arr)} with elements of incompatible types")
             raise
 
+    def __str__(self) -> str:
+        """Return a string representation of the vector used in str(), formatted like a regular NumPy array."""
+        return np.ndarray.__str__(self)
+
+    def __repr__(self) -> str:
+        """Return a string representation of the vector, formatted like a regular NumPy array."""
+        return np.ndarray.__str__(self)
 
 def edge_3d(tail: Vector3D[float], head: Vector3D[float]
             ) -> Tuple[Vector3D[float], Vector3D[float]]:
