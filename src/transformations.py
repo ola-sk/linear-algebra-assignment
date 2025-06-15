@@ -1,7 +1,8 @@
 import math
-import numpy
+import numpy as np
 
-def rotation_matrix(angle: float, dimension1: int, dimension2: int) -> numpy.ndarray:
+
+def rotate(angle: float, dimension1: int, dimension2: int) -> np.ndarray:
     """
     dimension1 and dimension2 parameters to set the values in the rotation matrix.
     For example, if rotation happens in the XY plane, function would be called with dimension1=0 and dimension2=1.
@@ -12,9 +13,11 @@ def rotation_matrix(angle: float, dimension1: int, dimension2: int) -> numpy.nda
 
     to apply the rotation:
     rotated_vector = rotation_matrix @ v
-    '@' is the operator for matrix multiplication for NumPy ndarrays.
+    Transpose appropriately.
+    '@' is the operator for dot product for NumPy ndarrays.
     """
-    matrix = numpy.identity(3)
+    matrix = np.identity(3)
+    angle = np.radians(angle)
     matrix[dimension1, dimension1] = math.cos(angle)
     matrix[dimension1, dimension2] = -math.sin(angle)
     matrix[dimension2, dimension1] = math.sin(angle)
