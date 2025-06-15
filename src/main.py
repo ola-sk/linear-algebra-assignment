@@ -1,8 +1,6 @@
 from vectors import Vector3D, edge_3d
+from src.create_cube import create_cube
 
 if __name__ == '__main__':
-    # Create cube
-    origin = Vector3D.create((0,0,0))
-    vector1 = Vector3D.create((-1,-1,-1))
-    edge1 = edge_3d(origin, vector1)
-    print("success")
+    origin = Vector3D.create([2, 2, 1])  # Use the create method
+    cube = create_cube(1, origin)
