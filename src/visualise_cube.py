@@ -6,7 +6,7 @@ from numpy import ndarray
 from src.create_cube import create_cube
 
 
-def visualize_cube(cube: ndarray = create_cube(size=1), color: str = 'violet'):
+def visualize_cube(cube: ndarray = create_cube(size=1), color: str = 'violet') -> Figure:
     # Initialize the 3D plot
     fig: Figure = plt.figure()
     # specify placement of the plot on canvas and its projection
@@ -23,3 +23,6 @@ def visualize_cube(cube: ndarray = create_cube(size=1), color: str = 'violet'):
 
     # Show the plot
     plt.show()
+
+    # Return the figure
+    return fig
