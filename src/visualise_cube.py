@@ -1,10 +1,15 @@
 import matplotlib.pyplot as plt
+# for typing
+from matplotlib.figure import Figure
+from numpy import ndarray
+# for the default value of `cube`—the arg to `visualise_cube` function.
 from src.create_cube import create_cube
-import numpy as np
 
-def visualize_cube(cube: np.ndarray = create_cube(size=1), color: str = 'violet'):
+
+def visualize_cube(cube: ndarray = create_cube(size=1), color: str = 'violet'):
     # Initialize the 3D plot
-    fig = plt.figure()
+    fig: Figure = plt.figure()
+    # specify placement of the plot on canvas and its projection
     ax = fig.add_subplot(111, projection='3d')
 
     # Plot each edge
