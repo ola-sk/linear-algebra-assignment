@@ -9,9 +9,9 @@ if __name__ == '__main__':
     cube = create_cube(1, origin)
 
     rotation_matrix = rotate(45, 0, 1)
-    rotation_matrix2 = rotate(45, 0, 2)
+    rotation_matrix2 = rotate(90, 0, 2)
     rotated_matrix = []
     for edge in cube:
-        rotated_matrix.append((rotation_matrix @ edge.T).T)
+        rotated_matrix.append((rotation_matrix2 @ (rotation_matrix @ edge.T)).T)
     rotated_ndarray = np.array(rotated_matrix)
     visualize_cube(rotated_ndarray)
